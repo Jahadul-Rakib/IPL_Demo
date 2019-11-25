@@ -2,11 +2,12 @@ package com.ipl.d.models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -22,7 +23,8 @@ public class Player {
 	private int playerRuns;
 	private int playerTotalCentury;
 	private int playerTotalWicket;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Team team;
 
 	public Player() {
@@ -30,19 +32,7 @@ public class Player {
 
 	public Player(long id, String playerName, String playerRenk, int playerNumber, int playerRuns,
 			int playerTotalCentury, int playerTotalWicket, Team team) {
-
 		this.id = id;
-		this.playerName = playerName;
-		this.playerRenk = playerRenk;
-		this.playerNumber = playerNumber;
-		this.playerRuns = playerRuns;
-		this.playerTotalCentury = playerTotalCentury;
-		this.playerTotalWicket = playerTotalWicket;
-		this.team = team;
-	}
-
-	public Player(String playerName, String playerRenk, int playerNumber, int playerRuns, int playerTotalCentury,
-			int playerTotalWicket, Team team) {
 		this.playerName = playerName;
 		this.playerRenk = playerRenk;
 		this.playerNumber = playerNumber;
