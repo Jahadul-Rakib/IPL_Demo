@@ -44,4 +44,15 @@ public class HomeController {
 	public Player addPlayer(@RequestBody Player player) {
 		return teamService.addPlayer(player);
 	}
+	
+	@RequestMapping(value = "/getallplayer", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public List<Player> getTeam() {
+		return teamService.getAllPlayer();
+	}
+	@RequestMapping(value = "/getplayer/{id}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public List<Player> getPlyers(@PathVariable("id") long id) {
+		return teamService.getPlayerByTeamId(id);
+	}
 }

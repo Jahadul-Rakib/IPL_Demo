@@ -34,15 +34,20 @@ public class TeamService {
 		return playerRepo.save(player);
 	}
 
-	public List<Player> getPlayerByTeamId(long id) {
-		Team team = getTeam(id);
-		List<Player> p = playerRepo.getPlayerByTeam(team.getId());
+	public List<Player> getAllPlayer() {
+		List<Player> p = (List<Player>) playerRepo.findAll();
 		return p;
 	}
-	
+
+	public List<Player> getPlayerByTeamId(long id) {
+		Team team = getTeam(id);
+		List<Player> p = playerRepo.getPlayerByTeam(team);
+		return p;
+	}
+
 	public String deletePlayer(long id) {
 		playerRepo.deleteById(id);
 		return "Deleted";
-		
+
 	}
 }
