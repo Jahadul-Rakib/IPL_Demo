@@ -42,6 +42,7 @@ public class HomeController {
 	@RequestMapping(value = "/addplayer", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Player addPlayer(@RequestBody Player player) {
+		System.out.println(player);
 		return teamService.addPlayer(player);
 	}
 	
